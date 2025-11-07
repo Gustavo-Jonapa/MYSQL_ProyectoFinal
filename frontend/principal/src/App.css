@@ -12,10 +12,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Contenedor Principal */
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #1e293b 100%);
+  background-color: #0E0D0C;
   padding: 24px;
 }
 
@@ -24,14 +23,8 @@ body {
   margin: 0 auto;
 }
 
-/* Header */
 .header-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 24px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .header-content {
@@ -41,17 +34,15 @@ body {
   flex-wrap: wrap;
   gap: 16px;
 }
-
+#logo {
+  width: 150px;
+  height: auto;
+}
 .title {
   font-size: 2.5rem;
   font-weight: bold;
   color: white;
   margin-bottom: 8px;
-}
-
-.subtitle {
-  color: #bfdbfe;
-  font-size: 1rem;
 }
 
 .current-db {
@@ -70,7 +61,6 @@ body {
   color: white;
 }
 
-/* Grid Principal */
 .main-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -95,7 +85,6 @@ body {
   gap: 24px;
 }
 
-/* Cards */
 .card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -111,14 +100,12 @@ body {
   margin-bottom: 16px;
 }
 
-/* Plantillas */
 .templates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
 }
 
-/* Botones */
 .btn {
   padding: 12px 16px;
   border: none;
@@ -127,71 +114,31 @@ body {
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: white;
+  color: black;
 }
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.btn-purple { background: #a855f7; }
-.btn-purple:hover { background: #9333ea; }
-
-.btn-blue { background: #3b82f6; }
-.btn-blue:hover { background: #2563eb; }
-
-.btn-green { background: #22c55e; }
-.btn-green:hover { background: #16a34a; }
-
-.btn-yellow { background: #eab308; }
-.btn-yellow:hover { background: #ca8a04; }
-
-.btn-orange { background: #f97316; }
-.btn-orange:hover { background: #ea580c; }
-
-.btn-red { background: #ef4444; }
-.btn-red:hover { background: #dc2626; }
-
-/* Editor */
 .editor-container {
   position: relative;
   margin-bottom: 16px;
 }
-
+textarea::placeholder{
+  color: white;
+}
 .sql-editor {
   width: 100%;
   height: 200px;
-  background: rgba(30, 41, 59, 0.7);
+  background: #56514D;
   color: white;
   padding: 16px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-family: 'Courier New', monospace;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   resize: vertical;
   outline: none;
 }
-
-.sql-editor:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-}
-
-/* Sugerencias */
 .suggestions-box {
-  position: absolute;
-  top: 100%;
+  position: relative;
+  bottom: 40%;
   left: 0;
   right: 0;
   margin-top: 8px;
@@ -200,7 +147,6 @@ body {
   border-radius: 8px;
   overflow: hidden;
   z-index: 1000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .suggestions-header {
@@ -229,7 +175,7 @@ body {
 }
 
 .suggestion-item:hover {
-  background: #3b82f6;
+  background: rgba(59, 130, 246, 0.3);
 }
 
 /* Grupo de Botones */
@@ -241,34 +187,11 @@ body {
 
 .btn-execute {
   flex: 1;
-  background: linear-gradient(135deg, #22c55e, #10b981);
+  background-color: lightgray;
   font-size: 1.1rem;
   padding: 16px;
 }
 
-.btn-execute:hover {
-  background: linear-gradient(135deg, #16a34a, #059669);
-}
-
-.btn-analyze {
-  background: #3b82f6;
-  padding: 16px 24px;
-}
-
-.btn-analyze:hover {
-  background: #2563eb;
-}
-
-.btn-clear {
-  background: #ef4444;
-  padding: 16px 24px;
-}
-
-.btn-clear:hover {
-  background: #dc2626;
-}
-
-/* Resultados */
 .result-box {
   padding: 16px;
   border-radius: 8px;
@@ -304,7 +227,6 @@ body {
   margin-top: 8px;
 }
 
-/* Tabla de Datos */
 .table-container {
   margin-top: 16px;
   overflow-x: auto;
@@ -334,7 +256,6 @@ body {
   background: rgba(34, 197, 94, 0.1);
 }
 
-/* Análisis Léxico */
 .analysis-content {
   background: rgba(30, 41, 59, 0.5);
   border-radius: 8px;
@@ -391,7 +312,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Análisis Sintáctico */
 .syntax-result {
   padding: 16px;
   border-radius: 8px;
@@ -454,7 +374,6 @@ body {
   color: white;
 }
 
-/* Bases de Datos */
 .databases-list {
   display: flex;
   flex-direction: column;
@@ -485,7 +404,6 @@ body {
   color: #22c55e;
 }
 
-/* Scrollbar personalizado */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
