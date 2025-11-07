@@ -128,6 +128,13 @@ export default function MySQLInterface() {
         setAnalysis(data.analysis);
       }
 
+      // Limpiar el editor solo si el comando fue exitoso
+      if (data.success) {
+        setQuery('');
+        setSuggestions([]);
+        setShowSuggestions(false);
+      }
+
       if (query.toUpperCase().includes('CREATE DATABASE')) {
         fetchDatabases();
       }
@@ -169,14 +176,12 @@ export default function MySQLInterface() {
         <div className="header-card">
           <div className="header-content">
             <div>
-              <h1 className="title">🗄️ MySQL Manager</h1>
-              <p className="subtitle">
-                Ejecuta comandos SQL con análisis léxico y sintáctico en tiempo real
-              </p>
+              <h1 className="title">Bases de datos MYSQL</h1>
+              <img src="https://www.orangemantra.com/wp-content/uploads/2022/06/database-mysql.png" alt="logo" id="logo"/>
             </div>
             {currentDb && (
               <div className="current-db">
-                <p>📊 Base de datos activa: <strong>{currentDb}</strong></p>
+                <p>Base de datos activa: <strong>{currentDb}</strong></p>
               </div>
             )}
           </div>
@@ -187,32 +192,32 @@ export default function MySQLInterface() {
           <div className="main-panel">
             {/* Plantillas */}
             <div className="card">
-              <h2 className="card-title">⚡ Plantillas Rápidas</h2>
+              <h2 className="card-title"> Plantillas Rápidas</h2>
               <div className="templates-grid">
-                <button onClick={() => loadTemplate('createDb')} className="btn btn-purple">
-                  📁 CREATE DATABASE
+                <button onClick={() => loadTemplate('createDb')} className="btn">
+                  CREATE DATABASE
                 </button>
-                <button onClick={() => loadTemplate('use')} className="btn btn-blue">
-                  🎯 USE
+                <button onClick={() => loadTemplate('use')} className="btn">
+                  USE
                 </button>
-                <button onClick={() => loadTemplate('createTable')} className="btn btn-green">
-                  📋 CREATE TABLE
+                <button onClick={() => loadTemplate('createTable')} className="btn">
+                  CREATE TABLE
                 </button>
-                <button onClick={() => loadTemplate('insert')} className="btn btn-yellow">
-                  ➕ INSERT
+                <button onClick={() => loadTemplate('insert')} className="btn">
+                  INSERT
                 </button>
-                <button onClick={() => loadTemplate('update')} className="btn btn-orange">
-                  ✏️ UPDATE
+                <button onClick={() => loadTemplate('update')} className="btn">
+                  UPDATE
                 </button>
-                <button onClick={() => loadTemplate('delete')} className="btn btn-red">
-                  🗑️ DELETE
+                <button onClick={() => loadTemplate('delete')} className="btn">
+                  DELETE
                 </button>
               </div>
             </div>
 
             {/* Editor */}
             <div className="card">
-              <h2 className="card-title">✍️ Editor SQL</h2>
+              <h2 className="card-title"> Editor SQL</h2>
               <div className="editor-container">
                 <textarea
                   ref={textareaRef}
@@ -226,7 +231,7 @@ export default function MySQLInterface() {
                 {showSuggestions && suggestions.length > 0 && (
                   <div className="suggestions-box">
                     <div className="suggestions-header">
-                      <p>💡 Sugerencias</p>
+                      <p>Sugerencias</p>
                     </div>
                     {suggestions.map((suggestion, index) => (
                       <button
@@ -247,20 +252,10 @@ export default function MySQLInterface() {
                   disabled={loading}
                   className="btn btn-execute"
                 >
-                  {loading ? '⏳ Ejecutando...' : '▶️ Ejecutar Comando'}
+                  {loading ? 'Ejecutando...' : 'Ejecutar Comando'}
                 </button>
                 <button onClick={analyzeQuery} className="btn btn-analyze">
-                  🔍 Analizar
-                </button>
-                <button
-                  onClick={() => {
-                    setQuery('');
-                    setResult(null);
-                    setAnalysis(null);
-                  }}
-                  className="btn btn-clear"
-                >
-                  🗑️
+                  Analizar
                 </button>
               </div>
             </div>
@@ -269,7 +264,7 @@ export default function MySQLInterface() {
             {result && (
               <div className="card">
                 <h2 className="card-title">
-                  {result.success ? '✅ Resultado' : '❌ Error'}
+                  {result.success ? ' Resultado' : 'Error'}
                 </h2>
                 
                 <div className={`result-box ${result.success ? 'success' : 'error'}`}>
@@ -313,7 +308,7 @@ export default function MySQLInterface() {
             {/* Análisis Léxico */}
             {analysis?.lexical && (
               <div className="card">
-                <h2 className="card-title">🔤 Análisis Léxico</h2>
+                <h2 className="card-title"> Análisis Léxico</h2>
                 <div className="analysis-content">
                   <p className="token-count">
                     Tokens encontrados: <strong>{analysis.lexical.token_count}</strong>
@@ -338,11 +333,11 @@ export default function MySQLInterface() {
             {/* Análisis Sintáctico */}
             {analysis?.syntactic && (
               <div className="card">
-                <h2 className="card-title">🔧 Análisis Sintáctico</h2>
+                <h2 className="card-title"> Análisis Sintáctico</h2>
                 <div className={`syntax-result ${analysis.syntactic.valid ? 'valid' : 'invalid'}`}>
                   <div className="syntax-header">
                     <span className="syntax-icon">
-                      {analysis.syntactic.valid ? '✅' : '❌'}
+                      {analysis.syntactic.valid ? '' : ''}
                     </span>
                     <p className="syntax-status">
                       {analysis.syntactic.valid ? 'Sintaxis válida' : 'Error de sintaxis'}
